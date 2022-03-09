@@ -7,4 +7,4 @@ title: Mint Avatar NFT
 summary: Mint new avatar NFT on AtomicHub
 ---)";
 
-}  // namespace contract_name
+}  // namespace contract_name 

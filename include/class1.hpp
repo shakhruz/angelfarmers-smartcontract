@@ -7,11 +7,12 @@
 #include <string>
 #include <vector>
 
-#include "Schema1.hpp"
+// #include "Schema1.hpp"
+#include "class1-ricardian.cpp"
 
 namespace contract_name
 {
-    using contract_name::Schema1;
+    // using contract_name::Schema1;
     using eosio::check;
     using eosio::contract;
     using eosio::datastream;
@@ -20,9 +21,7 @@ namespace contract_name
     using std::string;
 
     // Ricardian contracts live in ricardian/class1-ricardian.cpp
-    // extern const char* sayhi_ricardian;
-    // extern const char* sayhialice_ricardian;
-    // extern const char* ricardian_clause;
+    extern const char* mintavatar;
 
     // The account this contract is normally deployed to
     inline constexpr auto default_contract_account = "angelfarmers"_n;
@@ -31,23 +30,12 @@ namespace contract_name
     {
        public:
         using eosio::contract::contract;
-
         presale_contract(name receiver, name code, datastream<const char*> ds);
-
-        // void sayhi();
-        // void sayhialice(const name& someone);
-
-        using Schema1Table = eosio::multi_index<"schema1"_n, Schema1>;
+        void mintavatar(eosio::name user, const std::string& avatar_name, const std::string& bio, const std::string& link, const std::string& img);
+        // using Schema1Table = eosio::multi_index<"schema1"_n, Schema1>;
     };
 
-    // This macro:
-    // * Creates a part of the dispatcher
-    // * Defines action wrappers which make it easy for other contracts and for test cases to invoke
-    //   this contract's actions
-    // * Optional: provides the names of actions to the ABI generator. Without this, the ABI
-    //   generator will make up names (e.g. arg0, arg1, arg2, ...).
-    // * Optional: provides ricardian contracts to the ABI generator. Without this, the ABI generator
-    //   will leave the ricardian contracts blank.
-    EOSIO_ACTIONS(contract_name::presale_contract, default_contract_account)
+    EOSIO_ACTIONS(contract_name::presale_contract, default_contract_account,
+                action(mintavatar, avatar_name, bio, link, img, ricardian_contract(mintavatar_ricardian)))
 
 }  // namespace contract_name
