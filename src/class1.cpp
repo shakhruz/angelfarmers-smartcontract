@@ -43,7 +43,7 @@ namespace contract_name
 
             // The dispatcher has already checked the token contract.
             // We need to check the token type.
-            eosio::check(quantity.symbol.code() == AWAX_SYMBOL.code(), "send AWAX token only!");
+            eosio::check(quantity.symbol.code() == AWAX_SYMBOL.code(), "send AWAX token only");
 
             // Record the change
             add_balance(from, quantity);            
@@ -55,7 +55,7 @@ namespace contract_name
             require_auth(user);
 
             asset price;
-            price.amount = 100;
+            price.amount = 1000000;
             price.symbol = symbol("AWAX", 4);
             sub_balance(user, price);
 
@@ -105,7 +105,7 @@ namespace contract_name
    EOSIO_ACTIONS(presale_contract,
                  "angelfarmers"_n,
                  notify("awaxdaotoken"_n, transfer),
-                 action(mintavatar, avatar_name, bio, link, img, ricardian_contract(mintavatar_ricardian)))
+                 action(mintavatar, user, avatar_name, bio, link, img, ricardian_contract(mintavatar_ricardian)))
 }  // namespace contract_name
 
 EOSIO_ACTION_DISPATCHER(contract_name::actions)
