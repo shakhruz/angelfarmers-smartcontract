@@ -55,7 +55,7 @@ namespace contract_name
             require_auth(user);
 
             asset price;
-            price.amount = 1000000;
+            price.amount = 9900;
             price.symbol = symbol("AWAX", 4);
             sub_balance(user, price);
 
